@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OapmsModelStoreContainer" CdmEntityContainer="OapmsEntities">
+    <EntitySetMapping Name="admins">
+      <EntityTypeMapping TypeName="OapmsModel.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="adminId" ColumnName="adminId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="companies">
+      <EntityTypeMapping TypeName="OapmsModel.company">
+        <MappingFragment StoreEntitySet="company">
+          <ScalarProperty Name="companyId" ColumnName="companyId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="driveDetails">
+      <EntityTypeMapping TypeName="OapmsModel.driveDetail">
+        <MappingFragment StoreEntitySet="driveDetail">
+          <ScalarProperty Name="driveId" ColumnName="driveId" />
+          <ScalarProperty Name="companyId" ColumnName="companyId" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hods">
+      <EntityTypeMapping TypeName="OapmsModel.hod">
+        <MappingFragment StoreEntitySet="hod">
+          <ScalarProperty Name="hodId" ColumnName="hodId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="course" ColumnName="course" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobs">
+      <EntityTypeMapping TypeName="OapmsModel.job">
+        <MappingFragment StoreEntitySet="job">
+          <ScalarProperty Name="jobId" ColumnName="jobId" />
+          <ScalarProperty Name="companyId" ColumnName="companyId" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="technology" ColumnName="technology" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+          <ScalarProperty Name="sscAggregate" ColumnName="sscAggregate" />
+          <ScalarProperty Name="hscAggregate" ColumnName="hscAggregate" />
+          <ScalarProperty Name="enggAggregate" ColumnName="enggAggregate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projectDetails">
+      <EntityTypeMapping TypeName="OapmsModel.projectDetail">
+        <MappingFragment StoreEntitySet="projectDetail">
+          <ScalarProperty Name="projectId" ColumnName="projectId" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="projectTitle" ColumnName="projectTitle" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="technology" ColumnName="technology" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="students">
+      <EntityTypeMapping TypeName="OapmsModel.student">
+        <MappingFragment StoreEntitySet="student">
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="technicals">
+      <EntityTypeMapping TypeName="OapmsModel.technical">
+        <MappingFragment StoreEntitySet="technical">
+          <ScalarProperty Name="technicalId" ColumnName="technicalId" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="courseName" ColumnName="courseName" />
+          <ScalarProperty Name="sscAggregate" ColumnName="sscAggregate" />
+          <ScalarProperty Name="hscAggregate" ColumnName="hscAggregate" />
+          <ScalarProperty Name="enggAggregate" ColumnName="enggAggregate" />
+          <ScalarProperty Name="noOfBacklog" ColumnName="noOfBacklog" />
+          <ScalarProperty Name="noOfYearDrop" ColumnName="noOfYearDrop" />
+          <ScalarProperty Name="appliedCompany" ColumnName="appliedCompany" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tpoes">
+      <EntityTypeMapping TypeName="OapmsModel.tpo">
+        <MappingFragment StoreEntitySet="tpo">
+          <ScalarProperty Name="tpoId" ColumnName="tpoId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

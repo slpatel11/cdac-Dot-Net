@@ -1,0 +1,47 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SignIn</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <h1>OAPMS Login</h1>
+    <div>
+        <form action="/Login/SignIn" method="post">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <td>Email</td>
+                        <td>
+                            <input type="text" name="email">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td>
+                            <input type="Password" name="password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="Submit" name="btnLogin" value="Sign In">
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <p style="color:red">@ViewBag.ErrorMessage</p>
+        </form>
+
+        <a href="/Login/Create" class="btn btn-success" style="margin-left: 10px;">Register here</a>
+
+    </div>
+</body>
+</html>

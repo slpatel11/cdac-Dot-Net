@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OapmsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="adminId" />
+    </Key>
+    <Property Name="adminId" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="Int32" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="companyId" />
+    </Key>
+    <Property Name="companyId" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="Int32" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="driveDetails" Relationship="Self.companyId_company_driveId" FromRole="company" ToRole="driveDetail" />
+    <NavigationProperty Name="jobs" Relationship="Self.companyId_company_jobId" FromRole="company" ToRole="job" />
+  </EntityType>
+  <EntityType Name="driveDetail">
+    <Key>
+      <PropertyRef Name="driveId" />
+    </Key>
+    <Property Name="driveId" Type="Int32" Nullable="false" />
+    <Property Name="companyId" Type="Int32" />
+    <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="company" Relationship="Self.companyId_company_driveId" FromRole="driveDetail" ToRole="company" />
+  </EntityType>
+  <EntityType Name="hod">
+    <Key>
+      <PropertyRef Name="hodId" />
+    </Key>
+    <Property Name="hodId" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="course" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="Int32" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="job">
+    <Key>
+      <PropertyRef Name="jobId" />
+    </Key>
+    <Property Name="jobId" Type="Int32" Nullable="false" />
+    <Property Name="companyId" Type="Int32" />
+    <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="technology" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="salary" Type="Int32" />
+    <Property Name="designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sscAggregate" Type="Double" />
+    <Property Name="hscAggregate" Type="Double" />
+    <Property Name="enggAggregate" Type="Double" />
+    <NavigationProperty Name="company" Relationship="Self.companyId_company_jobId" FromRole="job" ToRole="company" />
+  </EntityType>
+  <EntityType Name="projectDetail">
+    <Key>
+      <PropertyRef Name="projectId" />
+    </Key>
+    <Property Name="projectId" Type="Int32" Nullable="false" />
+    <Property Name="studentId" Type="Int32" />
+    <Property Name="projectTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="technology" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="student" Relationship="Self.studentId_student_projectId" FromRole="projectDetail" ToRole="student" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="studentId" />
+    </Key>
+    <Property Name="studentId" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="projectDetails" Relationship="Self.studentId_student_projectId" FromRole="student" ToRole="projectDetail" />
+    <NavigationProperty Name="technicals" Relationship="Self.studentId_student_technicalId" FromRole="student" ToRole="technical" />
+  </EntityType>
+  <EntityType Name="technical">
+    <Key>
+      <PropertyRef Name="technicalId" />
+    </Key>
+    <Property Name="technicalId" Type="Int32" Nullable="false" />
+    <Property Name="studentId" Type="Int32" />
+    <Property Name="courseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sscAggregate" Type="Double" />
+    <Property Name="hscAggregate" Type="Double" />
+    <Property Name="enggAggregate" Type="Double" />
+    <Property Name="noOfBacklog" Type="Int32" />
+    <Property Name="noOfYearDrop" Type="Int32" />
+    <Property Name="appliedCompany" Type="Int32" />
+    <NavigationProperty Name="student" Relationship="Self.studentId_student_technicalId" FromRole="technical" ToRole="student" />
+  </EntityType>
+  <EntityType Name="tpo">
+    <Key>
+      <PropertyRef Name="tpoId" />
+    </Key>
+    <Property Name="tpoId" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="Int32" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <Association Name="companyId_company_driveId">
+    <End Role="company" Type="Self.company" Multiplicity="0..1" />
+    <End Role="driveDetail" Type="Self.driveDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="companyId" />
+      </Principal>
+      <Dependent Role="driveDetail">
+        <PropertyRef Name="companyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="companyId_company_jobId">
+    <End Role="company" Type="Self.company" Multiplicity="0..1" />
+    <End Role="job" Type="Self.job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="companyId" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="companyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="studentId_student_projectId">
+    <End Role="student" Type="Self.student" Multiplicity="0..1" />
+    <End Role="projectDetail" Type="Self.projectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="projectDetail">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="studentId_student_technicalId">
+    <End Role="student" Type="Self.student" Multiplicity="0..1" />
+    <End Role="technical" Type="Self.technical" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="technical">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OapmsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admins" EntityType="Self.admin" />
+    <EntitySet Name="companies" EntityType="Self.company" />
+    <EntitySet Name="driveDetails" EntityType="Self.driveDetail" />
+    <EntitySet Name="hods" EntityType="Self.hod" />
+    <EntitySet Name="jobs" EntityType="Self.job" />
+    <EntitySet Name="projectDetails" EntityType="Self.projectDetail" />
+    <EntitySet Name="students" EntityType="Self.student" />
+    <EntitySet Name="technicals" EntityType="Self.technical" />
+    <EntitySet Name="tpoes" EntityType="Self.tpo" />
+    <AssociationSet Name="companyId_company_driveId" Association="Self.companyId_company_driveId">
+      <End Role="company" EntitySet="companies" />
+      <End Role="driveDetail" EntitySet="driveDetails" />
+    </AssociationSet>
+    <AssociationSet Name="companyId_company_jobId" Association="Self.companyId_company_jobId">
+      <End Role="company" EntitySet="companies" />
+      <End Role="job" EntitySet="jobs" />
+    </AssociationSet>
+    <AssociationSet Name="studentId_student_projectId" Association="Self.studentId_student_projectId">
+      <End Role="student" EntitySet="students" />
+      <End Role="projectDetail" EntitySet="projectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="studentId_student_technicalId" Association="Self.studentId_student_technicalId">
+      <End Role="student" EntitySet="students" />
+      <End Role="technical" EntitySet="technicals" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

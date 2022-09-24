@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OapmsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="adminId" />
+    </Key>
+    <Property Name="adminId" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="phone" Type="int" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="companyId" />
+    </Key>
+    <Property Name="companyId" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="location" Type="varchar" MaxLength="50" />
+    <Property Name="phone" Type="int" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="driveDetail">
+    <Key>
+      <PropertyRef Name="driveId" />
+    </Key>
+    <Property Name="driveId" Type="int" Nullable="false" />
+    <Property Name="companyId" Type="int" />
+    <Property Name="location" Type="varchar" MaxLength="50" />
+    <Property Name="date" Type="date" />
+  </EntityType>
+  <EntityType Name="hod">
+    <Key>
+      <PropertyRef Name="hodId" />
+    </Key>
+    <Property Name="hodId" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="course" Type="varchar" MaxLength="50" />
+    <Property Name="phone" Type="int" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="job">
+    <Key>
+      <PropertyRef Name="jobId" />
+    </Key>
+    <Property Name="jobId" Type="int" Nullable="false" />
+    <Property Name="companyId" Type="int" />
+    <Property Name="location" Type="varchar" MaxLength="50" />
+    <Property Name="technology" Type="varchar" MaxLength="50" />
+    <Property Name="salary" Type="int" />
+    <Property Name="designation" Type="varchar" MaxLength="50" />
+    <Property Name="sscAggregate" Type="float" />
+    <Property Name="hscAggregate" Type="float" />
+    <Property Name="enggAggregate" Type="float" />
+  </EntityType>
+  <EntityType Name="projectDetail">
+    <Key>
+      <PropertyRef Name="projectId" />
+    </Key>
+    <Property Name="projectId" Type="int" Nullable="false" />
+    <Property Name="studentId" Type="int" />
+    <Property Name="projectTitle" Type="varchar" MaxLength="50" />
+    <Property Name="description" Type="varchar" MaxLength="150" />
+    <Property Name="technology" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="studentId" />
+    </Key>
+    <Property Name="studentId" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="dateOfBirth" Type="varchar" MaxLength="50" />
+    <Property Name="gender" Type="varchar" MaxLength="10" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="varchar" MaxLength="150" />
+    <Property Name="phone" Type="varchar" MaxLength="15" />
+    <Property Name="address" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="technical">
+    <Key>
+      <PropertyRef Name="technicalId" />
+    </Key>
+    <Property Name="technicalId" Type="int" Nullable="false" />
+    <Property Name="studentId" Type="int" />
+    <Property Name="courseName" Type="varchar" MaxLength="50" />
+    <Property Name="sscAggregate" Type="float" />
+    <Property Name="hscAggregate" Type="float" />
+    <Property Name="enggAggregate" Type="float" />
+    <Property Name="noOfBacklog" Type="int" />
+    <Property Name="noOfYearDrop" Type="int" />
+    <Property Name="appliedCompany" Type="int" />
+  </EntityType>
+  <EntityType Name="tpo">
+    <Key>
+      <PropertyRef Name="tpoId" />
+    </Key>
+    <Property Name="tpoId" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="phone" Type="int" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="companyId_company_driveId">
+    <End Role="company" Type="Self.company" Multiplicity="0..1" />
+    <End Role="driveDetail" Type="Self.driveDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="companyId" />
+      </Principal>
+      <Dependent Role="driveDetail">
+        <PropertyRef Name="companyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="companyId_company_jobId">
+    <End Role="company" Type="Self.company" Multiplicity="0..1" />
+    <End Role="job" Type="Self.job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="companyId" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="companyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="studentId_student_projectId">
+    <End Role="student" Type="Self.student" Multiplicity="0..1" />
+    <End Role="projectDetail" Type="Self.projectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="projectDetail">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="studentId_student_technicalId">
+    <End Role="student" Type="Self.student" Multiplicity="0..1" />
+    <End Role="technical" Type="Self.technical" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="technical">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OapmsModelStoreContainer">
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="driveDetail" EntityType="Self.driveDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="hod" EntityType="Self.hod" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="job" EntityType="Self.job" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projectDetail" EntityType="Self.projectDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="technical" EntityType="Self.technical" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tpo" EntityType="Self.tpo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="companyId_company_driveId" Association="Self.companyId_company_driveId">
+      <End Role="company" EntitySet="company" />
+      <End Role="driveDetail" EntitySet="driveDetail" />
+    </AssociationSet>
+    <AssociationSet Name="companyId_company_jobId" Association="Self.companyId_company_jobId">
+      <End Role="company" EntitySet="company" />
+      <End Role="job" EntitySet="job" />
+    </AssociationSet>
+    <AssociationSet Name="studentId_student_projectId" Association="Self.studentId_student_projectId">
+      <End Role="student" EntitySet="student" />
+      <End Role="projectDetail" EntitySet="projectDetail" />
+    </AssociationSet>
+    <AssociationSet Name="studentId_student_technicalId" Association="Self.studentId_student_technicalId">
+      <End Role="student" EntitySet="student" />
+      <End Role="technical" EntitySet="technical" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
